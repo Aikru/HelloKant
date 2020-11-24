@@ -1,5 +1,9 @@
 <?php
 
+namespace Entity\Seance;
+use HelloKant\Repository;
+
+
 class Seance {
   public $timestamps = false;
   protected $fillable = ["showtime"];

@@ -2,7 +2,6 @@
 
 namespace HelloKant;
 
-use \PDO;
 use HelloKant\Database;
 
 class Repository extends Database 
