@@ -1,0 +1,11 @@
+{
+  "name": "HelloKant",
+  "description": "it's a manual, Kant ",
+  "autoload": {
+    "psr-4": {
+      "helloKant\\": "src/",
+      "App\\": "example/src/"
+    }
+  },
+  "require": {}
+}
