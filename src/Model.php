@@ -14,43 +14,57 @@ class Model extends Database
                 else // : create
                     {$this->insert();}
             }
-                else
-        return "La db n'existe pas";
+            
+        //TODO: ELSE => Message d'erreur 
     }
 
     
-    public function delete() 
-    { //TODO:
+    private function insert()
+    {
+        $query = "INSERT INTO " .$this->table() . " (" . $this->generateFieldsName() . ") VALUES(" . $this->generateValues() . ")";
+    
+        //TODO: Message d'erreur
     }
     
-    public function update() 
-    {   //TODO:
+    private function delete() 
+    {   $query = $this->db()->prepare("DELETE FROM " . $this->table() . " WHERE id = ?");
+         //TODO:
+    }
+    
+    private function update() 
+    {   $query = "UPDATE " . $this->table() . " SET " . $fields . " WHERE id = ?";
+        
+        //TODO:
+
     }
 
 
     private function issetTable()
     {
-       //TODO:
+       //TODO: querry to know if table exist
     }
 
     private function issetEntity()
     {
-          //TODO:
+          //TODO: querry to know if entyti already exist
     }
 
 
 
     private function generateFieldsName()
-    {  //TODO:
+    {  //TODO: querry to generate fieldname 
+
     }
     
     private function generateValues()
-    {  //TODO:
+    {  //TODO:  querry to generate value of fieldname
     }
 
-
-    private function insert()
+    
+    private function table()
     {
-         //TODO:
-    }  
+        //TODO: return name of the table
+
+    }
+
 }
