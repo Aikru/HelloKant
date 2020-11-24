@@ -11,13 +11,16 @@ class Model extends Database
             {
                 if($this->issetEntity()) // entity exist in database : update
                     {$this->update();}
-                else // : create
+                if($this->haveFK())
+                    {$this->FKquery()}
+                    else // : create
                     {$this->insert();}
             }
             
         //TODO: ELSE => Message d'erreur 
     }
 
+    
     
     private function insert()
     {
@@ -38,6 +41,11 @@ class Model extends Database
 
     }
 
+    
+    private function FKquery()
+    {
+          //TODO: Query of FK
+    }
 
     private function issetTable()
     {
@@ -47,6 +55,12 @@ class Model extends Database
     private function issetEntity()
     {
           //TODO: querry to know if entyti already exist
+    }
+
+    
+    private function haveFK()
+    {
+          //TODO: 
     }
 
 
@@ -66,5 +80,6 @@ class Model extends Database
         //TODO: return name of the table
 
     }
-
+        
+    
 }
