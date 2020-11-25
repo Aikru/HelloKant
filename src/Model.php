@@ -6,34 +6,28 @@ use HelloKant\Database;
 
 class Model extends Database
     { 
-        public function getAll()
-        {
-        }
-    
-        public function getById()
-        {
         
-        }
     
         public function save()
-        {   
+        {   var_dump($this); // Test with "php example/SchemaOfUse/createFilm.php" commande line
+                            // If the resulte is null it's normal
             if($this->issetTable()) //table exist in db
                 {
                     if($this->issetEntity()) // entity exist in database : update
                         {$this->update();}
                   
                         else // : create
-                        {$this->insert();}
+                        {$this->create();}
                 }
-
-        //TODO: ELSE => Message d'erreur "ta table existe pas"
+                        
+        //TODO: ELSE => Message d'erreur "la table existe pas"
     }
 
     
     
-    private function insert()
+    private function create()
     {
-        $query = "INSERT INTO " .$this->gettable() . " (" . $this->generateFieldsName() . ") VALUES(" . $this->generateValues() . ")";
+        $query = "INSERT INTO " .$this->gettable() . " (" . $this->getFieldsName() . ") VALUES(" . $this->getValues() . ")";
     
         //TODO: 
     }
@@ -49,58 +43,48 @@ class Model extends Database
         
         //TODO:   
      }
-
+     public function getAll()
+        {
+        }
     
-     private function FKquery()
-     {
-           //TODO: Make query to deal with FK
-     }
- 
+        public function getById()
+        {
+        
+        }
 
 
     private function issetTable()
-    { $query = "SELECT 1 FROM " . $this->gettable() . " LIMIT 1";
+    { 
+        $query = "SELECT 1 FROM " . $this->gettable() . " LIMIT 1";
         return $this->db()->query($query);
-
     }
 
     private function issetEntity()
     {
         $query = $this->db()->prepare("SELECT id FROM " . $this->gettable() . " WHERE id = ?");
         $query->execute([$this->id]);
-        return $query->rowCount();;
+        return $query->rowCount();
     }
 
-    
-    private function haveFK()
-    {
-          //TODO:  One of the value is an array ?
-    }
-
-
-
-    private function generateFieldsName()
+    private function getFieldsName()
     {  //TODO: querry to generate fieldname 
-
+        //$properties = get_object_vars($this);    
+        //unset($properties['fieldsTypes']);
+        //    return $properties;
+    
     }
     
-    private function generateValues()
+    private function getValues()
     {  //TODO:  generate value of fieldname
-
-    $properties = [];
-        foreach($this->properties() as $propertie)
-    { 
-        $properties[] = $propertie;
-    }
-    
+        $properties = get_object_vars($this);    
+        unset($properties['fieldsTypes']);
             return $properties;
     
     }
+
     private function gettable()
     {
-            return strtolower($this->get_class($this)) . 's' ;
-        }
-        //TODO: return name of the table
+            return strtolower(get_class($this)) . 's' ;
 
     }
 
