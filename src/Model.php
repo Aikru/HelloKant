@@ -5,17 +5,18 @@ namespace HelloKant;
 use HelloKant\Database;
 
 class Model extends Database
-{
-    public function save()
-    {   if($this->issetTable()) //table exist in db
-            {
-                if($this->issetEntity()) // entity exist in database : update
-                    {$this->update();}
-                if($this->haveFK())
-                    {$this->FKquery()}
-                    else // : create
-                    {$this->insert();}
-            }
+    {
+        public function save()
+        {   if($this->issetTable()) //table exist in db
+                {
+                    if($this->issetEntity()) // entity exist in database : update
+                        {$this->update();}
+                    if($this->haveFK())
+                    
+                        {$this->FKquery();}
+                        else // : create
+                        {$this->insert();}
+                }
             
         //TODO: ELSE => Message d'erreur 
     }

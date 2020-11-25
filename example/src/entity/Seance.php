@@ -1,14 +1,13 @@
 <?php
 
 namespace Entity\Seance;
-use HelloKant\Repository;
+use HelloKant\Model;
 
 
-class Seance {
+class Seance extends Model  {
   public $timestamps = false;
   protected $fillable = ["showtime"];
   
   public function film(){
-    echo("TODO: \$this->belongsTo('Film');");
   }
 }
