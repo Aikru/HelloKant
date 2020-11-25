@@ -3,7 +3,7 @@
   "description": "it's a manual, Kant ",
   "autoload": {
     "psr-4": {
-      "helloKant\\": "src/",
+      "HelloKant\\": "src/",
       "App\\": "example/src/"
     }
   },

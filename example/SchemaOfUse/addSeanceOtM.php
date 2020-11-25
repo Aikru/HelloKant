@@ -1,6 +1,7 @@
 <?php 
+require "vendor/autoload.php";
 
-use Entity\Seance;
+use App\Entity\Seance;
 
 $seance = new Seance();
 $seance->film_id = $argv[1];

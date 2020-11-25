@@ -1,7 +1,8 @@
 <?php
+require "vendor/autoload.php";
 
-use Entity\Film;
-use Entity\Seance;
+use App\Entity\Film;
+use App\Entity\Seance;
 
 
 

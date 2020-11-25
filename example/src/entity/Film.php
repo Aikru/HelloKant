@@ -1,5 +1,5 @@
 <?php
-namespace Entity\Film;
+namespace App\Entity;
 
 use HelloKant\Model;
 

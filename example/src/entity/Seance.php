@@ -1,6 +1,6 @@
 <?php
 
-namespace Entity\Seance;
+namespace App\Entity;
 use HelloKant\Model;
 
 

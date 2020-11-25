@@ -5,19 +5,18 @@ namespace HelloKant;
 use HelloKant\Database;
 
 class Model extends Database
-    {
+    { 
         public function save()
-        {   if($this->issetTable()) //table exist in db
+        {   
+            if($this->issetTable()) //table exist in db
                 {
                     if($this->issetEntity()) // entity exist in database : update
                         {$this->update();}
-                    if($this->haveFK())
-                    
-                        {$this->FKquery();}
+                  
                         else // : create
                         {$this->insert();}
                 }
-            
+
         //TODO: ELSE => Message d'erreur 
     }
 
@@ -27,7 +26,7 @@ class Model extends Database
     {
         $query = "INSERT INTO " .$this->table() . " (" . $this->generateFieldsName() . ") VALUES(" . $this->generateValues() . ")";
     
-        //TODO: Message d'erreur
+        //TODO: 
     }
     
     private function delete() 
@@ -38,15 +37,16 @@ class Model extends Database
     private function update() 
     {   $query = "UPDATE " . $this->table() . " SET " . $fields . " WHERE id = ?";
         
-        //TODO:
-
-    }
+        //TODO:   
+     }
 
     
-    private function FKquery()
-    {
-          //TODO: Query of FK
-    }
+     private function FKquery()
+     {
+           //TODO: Make query to deal with FK
+     }
+ 
+
 
     private function issetTable()
     {
@@ -73,6 +73,7 @@ class Model extends Database
     
     private function generateValues()
     {  //TODO:  querry to generate value of fieldname
+
     }
 
     

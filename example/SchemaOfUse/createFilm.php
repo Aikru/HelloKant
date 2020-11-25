@@ -1,9 +1,12 @@
 <?php
-use Entity\Film;
+require "vendor/autoload.php";
+use App\Entity\Film;
+
 
 $film = new Film();
-$film->title = $argv[1];
-$film->duration = $argv[2];
-$film->release_date = $argv[3];
+$film->title = "The Room";
+$film->duration = 150;
+$film->release_date = "2010-05-20";
 
 $film->save();
+var_dump($film->id );
