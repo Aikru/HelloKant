@@ -1,12 +1,15 @@
 <?php
-namespace Entity\Film;
+namespace App\Entity;
 
-class Film {
+use HelloKant\Model;
+
+class Film extends Model {
   public $timestamps = false;
   protected $fillable = ["title", "release_date", "duration"]; 
 
   public function seances(){
-    echo("TODO:  $this->hasMany('Seance'); ");
+ 
+    //TODO: Create the Instance (__construct)
     
   }
 }

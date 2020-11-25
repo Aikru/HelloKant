@@ -5,65 +5,86 @@ namespace HelloKant;
 use HelloKant\Database;
 
 class Model extends Database
-{
-    public function save()
-    {   if($this->issetTable()) //table exist in db
-            {
-                if($this->issetEntity()) // entity exist in database : update
-                    {$this->update();}
-                else // : create
-                    {$this->insert();}
-            }
-            
-        //TODO: ELSE => Message d'erreur 
+    { 
+        
+    
+        public function save()
+        {   var_dump($this); // Test with "php example/SchemaOfUse/createFilm.php" commande line
+                            // If the resulte is null it's normal
+            if($this->issetTable()) //table exist in db
+                {
+                    if($this->issetEntity()) // entity exist in database : update
+                        {$this->update();}
+                  
+                        else // : create
+                        {$this->create();}
+                }
+                        
+        //TODO: ELSE => Message d'erreur "la table existe pas"
     }
 
     
-    private function insert()
-    {
-        $query = "INSERT INTO " .$this->table() . " (" . $this->generateFieldsName() . ") VALUES(" . $this->generateValues() . ")";
     
-        //TODO: Message d'erreur
+    private function create()
+    {
+        $query = "INSERT INTO " .$this->gettable() . " (" . $this->getFieldsName() . ") VALUES(" . $this->getValues() . ")";
+    
+        //TODO: 
     }
     
     private function delete() 
-    {   $query = $this->db()->prepare("DELETE FROM " . $this->table() . " WHERE id = ?");
+    {   $query = $this->db()->prepare("DELETE FROM " . $this->gettable() . " WHERE id = ?");
          //TODO:
     }
     
     private function update() 
-    {   $query = "UPDATE " . $this->table() . " SET " . $fields . " WHERE id = ?";
+    {   $fields = [];
+        $query = "UPDATE " . $this->gettable() . " SET " . $fields . " WHERE id = ?";
         
-        //TODO:
-
-    }
+        //TODO:   
+     }
+     public function getAll()
+        {
+        }
+    
+        public function getById()
+        {
+        
+        }
 
 
     private function issetTable()
-    {
-       //TODO: querry to know if table exist
+    { 
+        $query = "SELECT 1 FROM " . $this->gettable() . " LIMIT 1";
+        return $this->db()->query($query);
     }
 
     private function issetEntity()
     {
-          //TODO: querry to know if entyti already exist
+        $query = $this->db()->prepare("SELECT id FROM " . $this->gettable() . " WHERE id = ?");
+        $query->execute([$this->id]);
+        return $query->rowCount();
     }
 
-
-
-    private function generateFieldsName()
+    private function getFieldsName()
     {  //TODO: querry to generate fieldname 
-
+        //$properties = get_object_vars($this);    
+        //unset($properties['fieldsTypes']);
+        //    return $properties;
+    
     }
     
-    private function generateValues()
-    {  //TODO:  querry to generate value of fieldname
+    private function getValues()
+    {  //TODO:  generate value of fieldname
+        $properties = get_object_vars($this);    
+        unset($properties['fieldsTypes']);
+            return $properties;
+    
     }
 
-    
-    private function table()
+    private function gettable()
     {
-        //TODO: return name of the table
+            return strtolower(get_class($this)) . 's' ;
 
     }
 
