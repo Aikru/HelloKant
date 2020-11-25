@@ -9,6 +9,7 @@ class Film extends Model {
 
   public function seances(){
  
+    //TODO: Create the Instance (__construct)
     
   }
 }

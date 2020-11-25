@@ -9,5 +9,8 @@ class Seance extends Model  {
   protected $fillable = ["showtime"];
   
   public function film(){
+
+        //TODO: Create the Instance (__construct)
+
   }
 }
