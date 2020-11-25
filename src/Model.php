@@ -6,6 +6,15 @@ use HelloKant\Database;
 
 class Model extends Database
     { 
+        public function getAll()
+        {
+        }
+    
+        public function getById()
+        {
+        
+        }
+    
         public function save()
         {   
             if($this->issetTable()) //table exist in db
@@ -17,25 +26,26 @@ class Model extends Database
                         {$this->insert();}
                 }
 
-        //TODO: ELSE => Message d'erreur 
+        //TODO: ELSE => Message d'erreur "ta table existe pas"
     }
 
     
     
     private function insert()
     {
-        $query = "INSERT INTO " .$this->table() . " (" . $this->generateFieldsName() . ") VALUES(" . $this->generateValues() . ")";
+        $query = "INSERT INTO " .$this->gettable() . " (" . $this->generateFieldsName() . ") VALUES(" . $this->generateValues() . ")";
     
         //TODO: 
     }
     
     private function delete() 
-    {   $query = $this->db()->prepare("DELETE FROM " . $this->table() . " WHERE id = ?");
+    {   $query = $this->db()->prepare("DELETE FROM " . $this->gettable() . " WHERE id = ?");
          //TODO:
     }
     
     private function update() 
-    {   $query = "UPDATE " . $this->table() . " SET " . $fields . " WHERE id = ?";
+    {   $fields = [];
+        $query = "UPDATE " . $this->gettable() . " SET " . $fields . " WHERE id = ?";
         
         //TODO:   
      }
@@ -49,19 +59,22 @@ class Model extends Database
 
 
     private function issetTable()
-    {
-       //TODO: querry to know if table exist
+    { $query = "SELECT 1 FROM " . $this->gettable() . " LIMIT 1";
+        return $this->db()->query($query);
+
     }
 
     private function issetEntity()
     {
-          //TODO: querry to know if entyti already exist
+        $query = $this->db()->prepare("SELECT id FROM " . $this->gettable() . " WHERE id = ?");
+        $query->execute([$this->id]);
+        return $query->rowCount();;
     }
 
     
     private function haveFK()
     {
-          //TODO: 
+          //TODO:  One of the value is an array ?
     }
 
 
@@ -72,16 +85,23 @@ class Model extends Database
     }
     
     private function generateValues()
-    {  //TODO:  querry to generate value of fieldname
+    {  //TODO:  generate value of fieldname
 
+    $properties = [];
+        foreach($this->properties() as $propertie)
+    { 
+        $properties[] = $propertie;
     }
-
     
-    private function table()
+            return $properties;
+    
+    }
+    private function gettable()
     {
+            return strtolower($this->get_class($this)) . 's' ;
+        }
         //TODO: return name of the table
 
     }
-        
-    
+
 }
