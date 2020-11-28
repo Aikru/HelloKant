@@ -64,9 +64,11 @@ class Model extends Database
         $result = $query->fetch(PDO::FETCH_ASSOC);
 
         return $result;
+        
+
     }
     
-    public function findById($id)
+    public function getById($id)
     {
         $query = $this->db->prepare("SELECT * FROM " . $this->gettable() . " WHERE id = :id" );
         $query->execute([
