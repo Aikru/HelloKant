@@ -5,5 +5,5 @@ use App\Entity\Film;
 
 
 
-$seance = new Film();
-$seance->delete($id);
+$film = new Film();
+$film->delete(3);

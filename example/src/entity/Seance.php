@@ -10,7 +10,8 @@ class Seance extends Model  {
   
   public function film(){
 
-        //TODO: Create the Instance (__construct)
 
+
+        //         return $this->hasMany(Entity::class, 'parent_id', 'id');
   }
 }
