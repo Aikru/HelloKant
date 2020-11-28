@@ -3,7 +3,6 @@ require "vendor/autoload.php";
 
 use App\Entity\Film;
 
-
-
-$seance = new Film();
-$seance->delete($id);
+$film = new Film();
+$film->getAll();
+var_dump($film);

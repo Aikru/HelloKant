@@ -1,6 +1,6 @@
 {
-  "host": "localhost:3000",
-  "name": "HelloKant",
-  "user": "root",
-  "pass": ""
+  "host": "localhost",
+  "name": "bdname",
+  "user": "user",
+  "pass": "Oui"
 }

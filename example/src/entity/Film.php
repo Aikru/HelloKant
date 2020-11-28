@@ -1,6 +1,7 @@
 <?php
 namespace App\Entity;
 
+
 use HelloKant\Model;
 
 class Film extends Model {
@@ -9,7 +10,9 @@ class Film extends Model {
 
   public function seances(){
  
-    //TODO: Create the Instance (__construct)
+ 
+    
+    //     return $this->belongsTo(Entity::class);
     
   }
 }
