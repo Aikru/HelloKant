@@ -41,18 +41,6 @@ When your instance is up, you can acces to his properties :
 
 ```php
 
-require "vendor/autoload.php";
-use App\Entity\Bar;
-
-$foo = new bar();
-$foo->name = "The Room";
-```
-
-## Use the model
-
-Create
-
-```php
 use App\Repository\Bar;
 
 
@@ -60,6 +48,21 @@ $film = new Bar();
 $film->name;
 
 
+```
+
+## Use the model
+
+Create
+
+```php
+
+
+require "vendor/autoload.php";
+use App\Entity\Bar;
+
+$foo = new bar();
+$foo->name = "The Room";
+$foo->save()
 ```
 
 Read
